@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import ProductTab from "@/components/ProductTab";
 
 export default function Home() {
   const searchParams = useSearchParams();
@@ -30,7 +31,7 @@ export default function Home() {
         before,
         last: before ? 8 : undefined,
       });
-      setProducts((prev) => (isNewPage ? response.products.edges : [...prev, ...response.products.edges]));
+      // setProducts((prev) => (isNewPage ? response.products.edges : [...prev, ...response.products.edges]));
       setPageInfo(response.products.pageInfo);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -63,8 +64,8 @@ export default function Home() {
       {loading && <LoadingOverlay />}
 
       <div className="container mx-auto px-4 py-24">
-        {error && <p className="text-red-500 mb-4">{error}</p>}
-
+        {error ? <p className="mb-4 mt-8 text-red-500">{error}</p> : <p className="mb-4 mt-8"></p>}
+        <ProductTab />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
           {products.map((product) => (
             <div
@@ -105,7 +106,7 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="flex justify-between mt-8">
+        {/* <div className="flex justify-between mt-8">
           <button
             onClick={handlePreviousPage}
             disabled={!pageInfo?.hasPreviousPage || !pageInfo.startCursor || loading}
@@ -120,7 +121,7 @@ export default function Home() {
           >
             {t('next')}
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -7,10 +7,13 @@ export default function CartButton() {
   const { cartCount } = useCart();
 
   return (
-    <Link href="/cart" className="px-4">
+    <Link href="/cart" className="ml-2 px-4 rounded-full w-25">
       <div className="relative cursor-pointer">
-        <FaShoppingCart className="text-2xl text-gray-800 hover:text-blue-600" />
-        <span className="absolute top-0 right-0 bg-blue-600 text-white text-xs rounded-full px-1.5 py-0.5">
+        {/* <FaShoppingCart className="text-2xl text-gray-800 hover:text-blue-600" /> */}
+        <span className="border border-regal-orange font-semibold px-3 pr-10 py-2 rounded-full text-sm">
+          CART
+        </span>
+        <span className="absolute border border-regal-orange bottom-0 left-4 ml-11 px-2 rounded-full text-lg top-0" style={{ marginBottom: "-4px", marginTop: "-4px", width: "32px", paddingLeft: "10px" }}>
           {cartCount}
         </span>
       </div>
