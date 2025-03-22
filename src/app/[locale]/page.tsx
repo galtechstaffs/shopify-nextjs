@@ -9,6 +9,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import ProductTab from "@/components/ProductTab";
+import GridProduct from "@/components/GridProduct";
 
 export default function Home() {
   const searchParams = useSearchParams();
@@ -61,68 +62,18 @@ export default function Home() {
     <div>
       <Navbar />
 
-      {loading && <LoadingOverlay />}
-
-      <div className="container mx-auto px-4 py-24">
-        {error ? <p className="mb-4 mt-8 text-red-500">{error}</p> : <p className="mb-4 mt-8"></p>}
-        <ProductTab />
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
-          {products.map((product) => (
-            <div
-              key={product.node.id}
-              className="bg-white shadow-lg rounded-lg overflow-hidden border hover:shadow-xl transition-shadow duration-300"
-            >
-              <Link href={`/product/${product.node.id.split("/").pop()}`}>
-              <Image
-                src={product.node.featuredImage?.url ? product.node.featuredImage?.url : "/no-image.jpeg"}
-                alt={product.node.title}
-                width={224}
-                height={224}
-                className="w-full h-56 object-cover cursor-pointer"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                priority={products.indexOf(product) < 4}
-              />
-              </Link>
-              <div className="p-4">
-                <Link href={`/product/${product.node.id.split("/").pop()}`}>
-                  <h2 className="text-lg font-semibold text-gray-900 hover:text-blue-600 cursor-pointer">
-                    {product.node.title}
-                  </h2>
-                </Link>
-                <p className="text-sm text-gray-600 mt-2 line-clamp-2">{product.node.description}</p>
-                <div className="flex items-center mt-2">
-                  <p className="text-md font-bold text-gray-800">
-                    {product.node.priceRange.minVariantPrice.amount}
-                  </p>
-                  {product.node.variants.edges[0]?.node.compareAtPrice?.amount && (
-                    <p className="text-sm text-gray-500 line-through ml-2">
-                      {product.node.variants.edges[0].node.compareAtPrice.amount}
-                    </p>
-                  )}
-                </div>
-                <AddToCartButton productId={product.node.variants.edges[0]?.node.id} />
-              </div>
-            </div>
-          ))}
+      <div className="container mx-auto h-180 bg-[url(/Group_831.webp)]"
+      style={{ backgroundImage: "url(/Group_831.webp)", backgroundSize: "contain"}}>
+        <div className="grid h-170 grid-cols-2 content-end gap-4 w-400">
+          <div className="p-6">
+            <h1 className="font-bold text-6xl text-orange">BIG LIPS, </h1>
+            <h1 className="font-bold text-6xl text-orange">BIGGER ENERGY</h1>
+            <p className="mt-6 p-1 text-gray-800 w-120">Our famous lip linear lines, fills and plumps so you can cheat your way to an instant lip lift</p>
+            <button className="border border-regal-orange hover:bg-regal-orange hover:text-white mt-4 px-6 py-2 rounded-full text-orange">SHOP PLUMP & FILL</button>
+          </div>
         </div>
-
-        {/* <div className="flex justify-between mt-8">
-          <button
-            onClick={handlePreviousPage}
-            disabled={!pageInfo?.hasPreviousPage || !pageInfo.startCursor || loading}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
-          >
-            {t('prev')}
-          </button>
-          <button
-            onClick={handleNextPage}
-            disabled={!pageInfo?.hasNextPage || !pageInfo.endCursor || loading}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
-          >
-            {t('next')}
-          </button>
-        </div> */}
       </div>
+      <GridProduct />
     </div>
   );
 }

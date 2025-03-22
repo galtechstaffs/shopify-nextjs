@@ -65,15 +65,19 @@ export default function ProductTab() {
     ];
 
     return (
-        <div className="grid grid-cols-3 gap-4 mt-8">
-            <div className="border-r-1 border-regal-orange col-span-2 mt-4">
+        <div className="grid grid-cols-3 gap-4 mt-12 border-t-1 border-regal-orange">
+            <div className="border-r-1 border-regal-orange col-span-2">
                 <Tabs value="lip">
                 <div className="flex flex-1 items-center justify-center mt-6 sm:items-stretch sm:justify-start">
                   <div className="hidden sm:ml-6 sm:block">
-                  <TabsHeader className="flex">
+                  <TabsHeader 
+        className=""
+        indicatorProps={{
+          className: "bg-gray-900/1 shadow-none !text-gray-900",
+        }}>
                     {data.map(({ label, value }) => (
                       <Tab key={value} value={value}
-                        activeClassName="" 
+                        activeClassName="bg-regal-orange text-white" 
                         className="border border-regal-orange font-bold hover:bg-regal-orange hover:text-white ml-2 px-4 py-2 rounded-full text-sm"
                         >
                         {label}

@@ -12,6 +12,8 @@ export default function Navbar() {
     const t = useTranslations('Product');
     const l = useTranslations('Language');
     const router = useRouter();
+    console.log(router);
+    
     const [searchInput, setSearchInput] = useState("");
     const { language, setLanguage } = useLanguage();
 
@@ -21,10 +23,11 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="bg-white border-b-1 border-regal-orange fixed w-full z-10">
-            <div className="container mt-8 mx-auto rounded-full text-center text-white bg-regal-orange">
-                <h3 className="font-bold py-1 text-sm">FREE UK SHIPPING ON ORDERS OVER $40</h3>
-            </div>
+        <nav className="border-regal-orange fixed w-full z-10">
+            <div className="container mt-8 mx-auto px-6">
+                <div className="rounded-full text-center text-white bg-regal-orange">
+                    <h3 className="font-bold py-1 text-sm">FREE UK SHIPPING ON ORDERS OVER $40</h3>
+                </div>
             <div className="container mx-auto px-4 py-4 flex flex-wrap items-center justify-between">
                 <div className="w-full flex justify-between items-center md:w-auto">
                     <Menubar />
@@ -46,7 +49,9 @@ export default function Navbar() {
                     </div> */}
                 </div>
                 <div>
-                    <h2 className="text-3xl text-orange font-semibold">PROJECT</h2>
+                <Link href="/">
+                <h2 className="text-3xl text-orange font-semibold">PROJECT</h2>
+                    </Link>
                 </div>
                 <div className="w-full flex justify-between items-center md:w-auto py-2">
                     <div className="ml-2 px-3 rounded-full w-25">  
@@ -60,6 +65,7 @@ export default function Navbar() {
                     </div>
                     <CartButton />
                 </div>
+            </div>
             </div>
         </nav >
     );
